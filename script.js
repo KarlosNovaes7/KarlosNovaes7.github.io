@@ -6,18 +6,26 @@ var backgroundMusic;
 
 // Function to initialize when page loads
 function initialize() {
-    displayCat(); // Display the cat.gif initially
-    
-    // Initialize music (but don't play it yet)
+    displayCat(); // Exibir a imagem inicial do gato
+
     backgroundMusic = document.getElementById('background-music');
+    backgroundMusic.muted = false; // Desmutar o áudio
     
-    // We'll try to start music on first interaction due to autoplay restrictions
-    document.body.addEventListener('click', function() {
-        if (!isMusicPlaying) {
-            playBackgroundMusic();
-        }
-    }, { once: true });
+    // Tentar tocar o áudio imediatamente
+    backgroundMusic.play().then(() => {
+        isMusicPlaying = true;
+        document.getElementById('sound-button').textContent = '🔊';
+    }).catch(error => {
+        console.log('Reprodução automática bloqueada. Esperando interação do usuário.');
+        // Mantemos a escuta para interação do usuário
+        document.body.addEventListener('click', function() {
+            if (!isMusicPlaying) {
+                playBackgroundMusic();
+            }
+        }, { once: true });
+    });
 }
+
 
 // Function to play background music
 function playBackgroundMusic() {
