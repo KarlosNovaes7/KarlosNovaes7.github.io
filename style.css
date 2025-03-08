@@ -38,3 +38,25 @@ button {
     border: none; /* Remove button border */
     cursor: pointer; /* Set cursor to pointer on hover */
 }
+
+/* Sound control button styles */
+#sound-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(251, 96, 127, 0.8);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: transform 0.2s;
+}
+
+#sound-button:hover {
+    transform: scale(1.1);
+}

@@ -1,5 +1,48 @@
 // script.js
 
+// Global variable to track if music is playing
+var isMusicPlaying = false;
+var backgroundMusic;
+
+// Function to initialize when page loads
+function initialize() {
+    displayCat(); // Display the cat.gif initially
+    
+    // Initialize music (but don't play it yet)
+    backgroundMusic = document.getElementById('background-music');
+    
+    // We'll try to start music on first interaction due to autoplay restrictions
+    document.body.addEventListener('click', function() {
+        if (!isMusicPlaying) {
+            playBackgroundMusic();
+        }
+    }, { once: true });
+}
+
+// Function to play background music
+function playBackgroundMusic() {
+    backgroundMusic.play()
+        .then(() => {
+            isMusicPlaying = true;
+            document.getElementById('sound-button').textContent = '🔊';
+        })
+        .catch(error => {
+            console.log('Music play failed:', error);
+            // Most browsers require user interaction to play audio
+        });
+}
+
+// Function to toggle sound on/off
+function toggleSound() {
+    if (isMusicPlaying) {
+        backgroundMusic.pause();
+        isMusicPlaying = false;
+        document.getElementById('sound-button').textContent = '🔇';
+    } else {
+        playBackgroundMusic();
+    }
+}
+
 // Function to handle button click events
 function selectOption(option) {
     // Check which option was clicked
@@ -73,8 +116,17 @@ function displayCatHeart() {
         imageContainer.appendChild(catHeartImage);
         // Hide the options container
         document.getElementById('options').style.display = 'none';
+        
+        // Adicione uma mensagem após clicar em "Yes"
+        var thankYouMessage = document.createElement('div');
+        thankYouMessage.textContent = "Yay! Happy Valentine's Day! ❤️";
+        thankYouMessage.style.fontFamily = "'Sacramento', cursive";
+        thankYouMessage.style.fontSize = "32px";
+        thankYouMessage.style.marginTop = "20px";
+        thankYouMessage.style.color = "#e91e63";
+        document.getElementById('text-container').appendChild(thankYouMessage);
     };
 }
 
-// Display the cat.gif initially
-displayCat();
+// Initialize when the page loads
+window.onload = initialize;
