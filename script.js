@@ -54,7 +54,7 @@ function selectOption(option) {
         });
     } else if (option === 'no') {
         // Change text on the "No" button to "You sure?"
-        document.getElementById('no-button').innerText = 'You sure?'; 
+        document.getElementById('no-button').innerText = 'Tem certeza?'; 
         // Increase font size of "Yes" button
         var yesButton = document.getElementById('yes-button');
         var currentFontSize = window.getComputedStyle(yesButton).getPropertyValue('font-size');
@@ -119,7 +119,7 @@ function displayCatHeart() {
         
         // Adicione uma mensagem após clicar em "Yes"
         var thankYouMessage = document.createElement('div');
-        thankYouMessage.textContent = "Yay! Happy Valentine's Day! ❤️";
+        thankYouMessage.textContent = "Yay! Eu também te amo Mochi Mochi ❤️";
         thankYouMessage.style.fontFamily = "'Sacramento', cursive";
         thankYouMessage.style.fontSize = "32px";
         thankYouMessage.style.marginTop = "20px";
